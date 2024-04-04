@@ -1,14 +1,17 @@
-# suplimentals_Iradukunda
-Python codes required from RGB image acquisition to analysis
-Special thanks to my labmates in Horticultural Physiology (laKahlin Waker), and Controlled Environment Agriculture (Jonathan Cardenas) for their help in getting started with coding and sharing their codes for me to make working functions. Andrew Benouchy helped in debugging and we used ChatGPT to improve the readability of the scripts. 
+These supplemental materials contain Python codes required from RGB image acquisition to analysis.
 
-The following are summary of what each code does
+Special thanks to my labmates in Horticultural Physiology (Kahlin B. Wacker), and Controlled Environment Agriculture (Jonathan S. Cardenas) for their help in getting started with coding and sharing their codes for me to make working functions. Andrew R. Benecchi helped in debugging to improve the readability of the scripts. 
+
+The following are summarized details of what each code does
 
 1. Image Acquisition (image_capture_picam2.py):
+   
    This  code  outlines a procedure for acquiring images using a Raspberry Pi camera module 2. Initially, the code imports necessary libraries for camera control and image processing. It initializes the camera module and sets up configurations such as image resolution and preview settings (these can be changed in the script). The script then defines the directory where the captured images will be stored, creating a new folder for each date if it doesn't already exist. Subsequently, it configures the camera focus to infinity to ensure sharp images and waits for a brief period to allow configurations to settle. Finally, it captures an image, saves it to the designated directory with a timestamp and camera information appended to the filename, and signals the end of execution ("END").
 
-2. Image Segmentation into 4 sections (image_segmentation_4points.py):
+3. Image Segmentation into 4 sections (image_segmentation_4points.py):
+   
    The script begins with importing necessary libraries such as OpenCV, NumPy, and PIL for image processing, along with other utilities for file management and data manipulation. It sets the dimensions of the images to be processed and specifies the path where the images are stored (these can be changed in the script). The script then defines a function called unwarp for the perspective transformation of images (based on OpenCV). It proceeds to extract information from the image filenames to determine the start time of the experiment and the tray numbers (labels that will be later used to identify replications and treatment locations). Next, the script iterates through the images, performs image preprocessing including rotation, cropping, and color space conversion (from BGR to HSV), and applies thresholding to isolate specific colors (in this case, red). It then identifies the contours of the objects in the images, calculates their centroids, and unwraps the images to correct for perspective distortion. Subsequently, the script divides the images into smaller regions corresponding to individual pots within the trays, saving these cropped images in separate folders organized by date and tray number. Finally, the script signals the completion of the process ('END).
 
-3. Image analysis (image_analysis.py):
+5. Image analysis (image_analysis.py):
+   
    This Python code is designed for analyzing images (resulted from script 2) to determine various parameters such as pixel count, average intensity, area, object count, average area, standard deviation of area, and germination percentage. The code utilizes the PlantCV library for image processing (requires special installation from https://plantcv.readthedocs.io/en/v3.0.4/installation/). It begins by defining functions for obtaining regions of interest (ROIs) as circles to identify plant locations and analyzing a single image as a model. The analyze_single_image function reads an image, converts it to grayscale, calculates a histogram, thresholds the image, and identifies connected components. It then calculates various parameters based on the segmented objects in the image. The PxEx function then helps the analysis process for multiple images within a specified directory (great care must be taken for directories). It iterates through each image, analyzes it using the analyze_single_image function, and writes the results to a CSV file (N.B: Close the CSV file before running it). Parameters such as minimum pixel size, calibration factor, image format, histogram minimum and maximum values for threshold adjustment, output file name, and directory containing the images are customizable inputs. Finally, the code prints "DONE" upon completion of the analysis.

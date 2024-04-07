@@ -1,4 +1,4 @@
-These supplemental materials contain Python codes required from RGB image acquisition to analysis.
+These supplemental materials contain Python codes required from RGB image acquisition to analysis and example results. In the 'imgs/' folder, you will find example images to perform described tasks.
 
 Special thanks to my labmates in Horticultural Physiology (Kahlin B. Wacker), and Controlled Environment Agriculture (Jonathan S. Cardenas) for their help in getting started with coding and sharing their codes for me to make working functions. Andrew R. Benecchi helped in debugging to improve the readability of the scripts. 
 
